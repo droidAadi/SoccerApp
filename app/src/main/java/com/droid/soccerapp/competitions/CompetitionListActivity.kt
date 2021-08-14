@@ -7,19 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.droid.soccerapp.R
+import com.droid.soccerapp.base.BaseActivity
+import com.droid.soccerapp.base.BaseViewModel
+import com.droid.soccerapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CompetitionListActivity : AppCompatActivity() {
+class CompetitionListActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private val viewModel by viewModel<CompetitionsViewModel>()
+    override val viewModel by viewModel<CompetitionsViewModel>()
 
     @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
-
+        setToolbar(dataBinding.toolbar, "Competitions")
         viewModel.fetchCompetitions()
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

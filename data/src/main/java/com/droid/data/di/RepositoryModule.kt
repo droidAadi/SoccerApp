@@ -1,11 +1,9 @@
 package com.droid.data.di
 
-import com.droid.data.mapper.CompetitionListMapper
 import com.droid.data.mapper.NetworkToEntityMapper
 import com.droid.data.models.CompetitionListResponse
 import com.droid.data.repositories.CompetitionRepositoryImpl
-import com.droid.data.source.DataSource
-import com.droid.data.source.CompetitionRemoteDataSource
+import com.droid.data.datasource.CompetitionRemoteDataSource
 import com.droid.domain.entities.CompetitionListEntity
 import com.droid.domain.repositories.CompetitionRepository
 import org.koin.dsl.module
@@ -22,11 +20,11 @@ val repositoryModule = module {
 }
 
 private fun provideCompetitionListRepository(
-    dataSource: DataSource,
+    competitionRemoteDataSource: CompetitionRemoteDataSource,
     mapper: NetworkToEntityMapper<CompetitionListResponse, CompetitionListEntity>
 ): CompetitionRepository {
     return CompetitionRepositoryImpl(
-        dataSource as CompetitionRemoteDataSource,
+        competitionRemoteDataSource,
         mapper
     )
 }

@@ -1,8 +1,8 @@
 package com.droid.data.di
 
 import com.droid.data.networkclient.RemoteNetworkClient
-import com.droid.data.source.DataSource
-import com.droid.data.source.CompetitionRemoteDataSource
+import com.droid.data.datasource.CompetitionRemoteDataSource
+import com.droid.data.datasource.CompetitionRemoteDataSourceImpl
 import org.koin.dsl.module
 
 /**
@@ -10,12 +10,12 @@ import org.koin.dsl.module
  */
 
 val dataSourceModule = module {
-    factory<DataSource> {
-        provideDataSource(get())
+    factory {
+        provideCompetitionRemoteDataSource(get())
     }
 }
 
-private fun provideDataSource(remoteNetworkClient: RemoteNetworkClient): CompetitionRemoteDataSource {
-    return CompetitionRemoteDataSource(remoteNetworkClient)
+private fun provideCompetitionRemoteDataSource(remoteNetworkClient: RemoteNetworkClient): CompetitionRemoteDataSource {
+    return CompetitionRemoteDataSourceImpl(remoteNetworkClient)
 }
 

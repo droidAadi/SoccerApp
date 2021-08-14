@@ -2,7 +2,7 @@ package com.droid.data.repositories
 
 import com.droid.data.mapper.NetworkToEntityMapper
 import com.droid.data.models.CompetitionListResponse
-import com.droid.data.source.CompetitionRemoteDataSource
+import com.droid.data.datasource.CompetitionRemoteDataSource
 import com.droid.domain.Result
 import com.droid.domain.entities.CompetitionListEntity
 import com.droid.domain.repositories.CompetitionRepository
